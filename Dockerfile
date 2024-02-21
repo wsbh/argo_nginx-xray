@@ -26,6 +26,9 @@ RUN apt-get update && apt-get --no-install-recommends install -y \
     rm -f cloudflared.deb && \
     chmod -v 755 entrypoint.sh
 
+RUN cat template_config.json | base64 > template_config.base64 && \
+    rm template_config.json
+    
 # Configure nginx
 RUN wget -O doge.zip https://github.com/tholman/long-doge-challenge/archive/refs/heads/main.zip && \
     mkdir -p /usr/share/nginx/html/ && \
