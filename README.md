@@ -1,5 +1,4 @@
-# Argo xray for PaaS
-
+# argoxpaasnginx
 back4app可以直接克隆本项目。Codesandbox部署方式参见[codesandbox/README.md](codesandbox/README.md)，还有[中文版](codesandbox/README.zh_cn.md)。
 
 ## 项目特点
