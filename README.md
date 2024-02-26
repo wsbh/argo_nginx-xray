@@ -1,4 +1,4 @@
-# dockerhub argoxpaasnginx:nowarp
+# dockerhub argoxpaasnginx:latest
 
 ## 增强
 
@@ -8,14 +8,15 @@
 * `https://<PaaS云服务商分配的域名>/cf.txt` 为最新的Cloudflare分配域名。
 * 增加Cloudflared多次重试，应对Cloudflare偶尔抽风。
 * `https://<PaaS云服务商分配的域名>/<UUID>.rootfs/`可直接下载rootfs中的内容（可在nginx.conf中删除相关段以禁用）。
-
+* 可同时使用域名直连与argo隧道
 ### Cloudflare固定隧道
 
 使用固定隧道需要设置ARGO_AUTH（Token，一长串Base64编码字符，可在Cloudflare官网隧道的Overview页面里找到），并在Cloudflare官网上配置一个Tunnel的Public Hostname，其服务需要指向`127.0.0.1:8080`。
 如果未设置ARGO_AUTH则不启用该特性。启用固定隧道并不会禁用trycloudflare.com的域名。
 固定隧道的地址为类似`https://固定通道的域名/VMESS_WSPATH`，端口，UUID等其他设置与非固定隧道的配置一样。
 
-public hostname指向http://127.0.0.1:8080，则固定走nginx反代路径，若指向http://127.0.0.1:8888，则固定走vless+ws无路径
+public hostname指向http://127.0.0.1:8080，则由nginx入站分流，
+若指向http://127.0.0.1:8888，则由xray入站回落，端口，UUID等设置一样。
 ### 远程管理
 
 * 增加ssh服务器，可连接至后台。该ssh服务在公网上不可见，需要以无"_warp"的路径连接到节点，然后通过代理来连接：`ssh root@127.0.0.1 -p2223 -v -o StrictHostKeyChecking=no -o ProxyCommand="/usr/bin/nc -x 127.0.0.1:1080 %h %p"`，其中127.0.0.1:1080为本地socks5服务器。
