@@ -15,8 +15,7 @@
 如果未设置ARGO_AUTH则不启用该特性。启用固定隧道并不会禁用trycloudflare.com的域名。
 固定隧道的地址为类似`https://固定通道的域名/VMESS_WSPATH`，端口，UUID等其他设置与非固定隧道的配置一样。
 
-public hostname指向'http://127.0.0.1:8080'，则由nginx入站分流，
-若指向'http://127.0.0.1:8888'，则由xray入站回落，端口，UUID等设置一样。
+public hostname指向8080，则由nginx入站分流，若指向8888，则由xray入站回落，端口，UUID等设置一样。
 ### 远程管理
 
 * 增加ssh服务器，可连接至后台。该ssh服务在公网上不可见，需要以无"_warp"的路径连接到节点，然后通过代理来连接：`ssh root@127.0.0.1 -p2223 -v -o StrictHostKeyChecking=no -o ProxyCommand="/usr/bin/nc -x 127.0.0.1:1080 %h %p"`，其中127.0.0.1:1080为本地socks5服务器。
