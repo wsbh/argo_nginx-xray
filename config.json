@@ -6,7 +6,7 @@
 	},
 	"inbounds": [
 		{
-			"port": 8080,
+			"port": 8081,
 			"protocol": "vless",
 			"settings": {
 				"clients": [
@@ -19,22 +19,6 @@
 				"fallbacks": [
 					{
 						"dest": 3001
-					},
-					{
-						"path": "/#VLESS_WSPATH#",
-						"dest": 20000
-					},
-					{
-						"path": "/#VMESS_WSPATH#",
-						"dest": 10000
-					},
-					{
-						"path": "/#TROJAN_WSPATH#",
-						"dest": 30000
-					},
-					{
-						"path": "/#SS_WSPATH#",
-						"dest": 40000
 					}
 				]
 			},
@@ -78,14 +62,6 @@
 				"wsSettings": {
 					"path": "/#VLESS_WSPATH#"
 				}
-			},
-			"sniffing": {
-				"enabled": true,
-				"destOverride": [
-					"http",
-					"tls"
-				],
-				"metadataOnly": false
 			}
 		},
 		{
@@ -105,14 +81,6 @@
 				"wsSettings": {
 					"path": "/#VMESS_WSPATH#"
 				}
-			},
-			"sniffing": {
-				"enabled": true,
-				"destOverride": [
-					"http",
-					"tls"
-				],
-				"metadataOnly": false
 			}
 		},
 		{
@@ -132,14 +100,6 @@
 				"wsSettings": {
 					"path": "/#TROJAN_WSPATH#"
 				}
-			},
-			"sniffing": {
-				"enabled": true,
-				"destOverride": [
-					"http",
-					"tls"
-				],
-				"metadataOnly": false
 			}
 		},
 		{
@@ -160,14 +120,6 @@
 				"wsSettings": {
 					"path": "/#SS_WSPATH#"
 				}
-			},
-			"sniffing": {
-				"enabled": true,
-				"destOverride": [
-					"http",
-					"tls"
-				],
-				"metadataOnly": false
 			}
 		}
 	],
