@@ -1,14 +1,4 @@
-# argoxpaasnginx
-back4app可以直接克隆本项目。Codesandbox部署方式参见[codesandbox/README.md](codesandbox/README.md)，还有[中文版](codesandbox/README.zh_cn.md)。
-
-## 项目特点
-
-* 本项目用于在任意一家 PaaS 云服务商部署 xray ，采用的方案为 Argo + Nginx + WebSocket + VMess/Vless/Trojan/Shadowsocks + TLS
-* xray 核心文件和配置文件作了“特殊处理”，每个项目都不同，大大降低被封和连坐风险
-* vmess 和 vless 的 uuid 或 trojan 和 shadowsocks 的密码，路径既可以自定义，又或者使用默认值
-* 集成哪吒探针，可以自由选择是否安装
-* 部署完成如发现不能上网，请检查域名是否被墙，可使用生成的 Argo 节点或 Cloudflare CDN 或者 worker 解决。
-* 可在支持Docker的VPS（KVM或者OpenVZ 7以上）上直接部署。
+# dockerhub argoxpaasnginx:nowarp
 
 ## 增强
 
@@ -24,7 +14,7 @@ back4app可以直接克隆本项目。Codesandbox部署方式参见[codesandbox/
 
 使用固定隧道需要设置ARGO_AUTH（Token，一长串Base64编码字符，可在Cloudflare官网隧道的Overview页面里找到），并在Cloudflare官网上配置一个Tunnel的Public Hostname，其服务需要指向`127.0.0.1:8080`。
 如果未设置ARGO_AUTH则不启用该特性。启用固定隧道并不会禁用trycloudflare.com的域名。
-指向8081为xray监听端口，只有tcp，没有回落功能
+
 固定隧道的地址为类似`https://固定通道的域名/VMESS_WSPATH`，端口，UUID等其他设置与非固定隧道的配置一样。
 
 ### 远程管理
@@ -72,9 +62,3 @@ back4app可以直接克隆本项目。Codesandbox部署方式参见[codesandbox/
 
 * 本程序仅供学习了解, 非盈利目的，请于下载后 24 小时内删除, 不得用作任何商业用途, 文字、数据及图片均有所属版权, 如转载须注明来源。
 * 使用本程序必循遵守部署免责声明。使用本程序必循遵守部署服务器所在地、所在国家和用户所在国家的法律法规, 程序作者不对使用者任何不当行为负责.
-
-## 赞助
-
-爱发电：https://afdian.net/a/Misaka-blog
-
-![afdian-MisakaNo の 小破站](https://user-images.githubusercontent.com/122191366/211533469-351009fb-9ae8-4601-992a-abbf54665b68.jpg)
