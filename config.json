@@ -6,41 +6,40 @@
 	},
 	"inbounds": [
 		{
-			"port": 8081,
+			"port": 80,
 			"protocol": "vless",
 			"settings": {
 				"clients": [
 					{
 						"id": "#UUID#",
-						"level": 0,
+						"level": 0
 					}
 				],
 				"decryption": "none",
-				"fallbacks": [
+								"fallbacks": [
 					{
-						"dest": 3001
+						"dest": 8080
+					},
+					{
+						"path": "/#VLESS_WSPATH#",
+						"dest": 20000
+					},
+					{
+						"path": "/#VMESS_WSPATH#",
+						"dest": 10000
+					},
+					{
+						"path": "/#TROJAN_WSPATH#",
+						"dest": 30000
+					},
+					{
+						"path": "/#SS_WSPATH#",
+						"dest": 40000
 					}
 				]
 			},
 			"streamSettings": {
 				"network": "tcp"
-			}
-		},
-		{
-			"port": 3001,
-			"listen": "127.0.0.1",
-			"protocol": "vless",
-			"settings": {
-				"clients": [
-					{
-						"id": "#UUID#"
-					}
-				],
-				"decryption": "none"
-			},
-			"streamSettings": {
-				"network": "ws",
-				"security": "none"
 			}
 		},
 		{
@@ -60,6 +59,7 @@
 				"network": "ws",
 				"security": "none",
 				"wsSettings": {
+					"acceptProxyProtocol": true,
 					"path": "/#VLESS_WSPATH#"
 				}
 			}
@@ -79,6 +79,7 @@
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
+					"acceptProxyProtocol": true,
 					"path": "/#VMESS_WSPATH#"
 				}
 			}
@@ -98,6 +99,7 @@
 				"network": "ws",
 				"security": "none",
 				"wsSettings": {
+					"acceptProxyProtocol": true,
 					"path": "/#TROJAN_WSPATH#"
 				}
 			}
@@ -118,6 +120,7 @@
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
+					"acceptProxyProtocol": true,
 					"path": "/#SS_WSPATH#"
 				}
 			}
