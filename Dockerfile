@@ -9,7 +9,7 @@ WORKDIR /app
 USER root
 
 COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
-
+COPY doge.zip ./
 COPY webpage.html ./template_webpage.html
 COPY nginx.conf ./template_nginx.conf
 COPY config.json ./template_config.json
@@ -33,8 +33,8 @@ RUN cat template_config.json | base64 > template_config.base64 && \
     rm template_config.json
     
 # Configure nginx
-RUN wget -O doge.zip https://github.com/wsbh/argo-nginx-xray-paas/raw/nowarp/html.zip && \
-    mkdir -p /usr/share/nginx/html/ && \
+#RUN wget -O doge.zip https://github.com/wsbh/argo-nginx-xray-paas/raw/nowarp/html.zip && \
+RUN mkdir -p /usr/share/nginx/html/ && \
     rm -rf /usr/share/nginx/* && \
     unzip -d /usr/share/nginx/ doge.zip && \
     rm doge.zip && \
