@@ -21,19 +21,19 @@
 						"dest": 81
 					},
 					{
-						"path": "/#VLESS_WSPATH#",
+						"path": "#VLESS_WSPATH#",
 						"dest": 20000
 					},
 					{
-						"path": "/#VMESS_WSPATH#",
+						"path": "#VMESS_WSPATH#",
 						"dest": 10000
 					},
 					{
-						"path": "/#TROJAN_WSPATH#",
+						"path": "#TROJAN_WSPATH#",
 						"dest": 30000
 					},
 					{
-						"path": "/#SS_WSPATH#",
+						"path": "#SS_WSPATH#",
 						"dest": 40000
 					}
 				]
@@ -60,7 +60,7 @@
 				"security": "none",
 				"wsSettings": {
 					"acceptProxyProtocol": true,
-					"path": "/#VLESS_WSPATH#"
+					"path": "#VLESS_WSPATH#"
 				}
 			}
 		},
@@ -80,7 +80,7 @@
 				"network": "ws",
 				"wsSettings": {
 					"acceptProxyProtocol": true,
-					"path": "/#VMESS_WSPATH#"
+					"path": "#VMESS_WSPATH#"
 				}
 			}
 		},
@@ -100,7 +100,7 @@
 				"security": "none",
 				"wsSettings": {
 					"acceptProxyProtocol": true,
-					"path": "/#TROJAN_WSPATH#"
+					"path": "#TROJAN_WSPATH#"
 				}
 			}
 		},
@@ -121,7 +121,7 @@
 				"network": "ws",
 				"wsSettings": {
 					"acceptProxyProtocol": true,
-					"path": "/#SS_WSPATH#"
+					"path": "#SS_WSPATH#"
 				}
 			}
 		}
