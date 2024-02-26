@@ -15,28 +15,7 @@
 						"level": 0
 					}
 				],
-				"decryption": "none",
-								"fallbacks": [
-					{
-						"dest": 81
-					},
-					{
-						"path": "#VLESS_WSPATH#",
-						"dest": 20000
-					},
-					{
-						"path": "#VMESS_WSPATH#",
-						"dest": 10000
-					},
-					{
-						"path": "#TROJAN_WSPATH#",
-						"dest": 30000
-					},
-					{
-						"path": "#SS_WSPATH#",
-						"dest": 40000
-					}
-				]
+				"decryption": "none"
 			},
 			"streamSettings": {
 				"network": "tcp"
@@ -59,7 +38,6 @@
 				"network": "ws",
 				"security": "none",
 				"wsSettings": {
-					"acceptProxyProtocol": true,
 					"path": "#VLESS_WSPATH#"
 				}
 			}
@@ -79,7 +57,6 @@
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"acceptProxyProtocol": true,
 					"path": "#VMESS_WSPATH#"
 				}
 			}
@@ -99,7 +76,6 @@
 				"network": "ws",
 				"security": "none",
 				"wsSettings": {
-					"acceptProxyProtocol": true,
 					"path": "#TROJAN_WSPATH#"
 				}
 			}
@@ -120,7 +96,6 @@
 			"streamSettings": {
 				"network": "ws",
 				"wsSettings": {
-					"acceptProxyProtocol": true,
 					"path": "#SS_WSPATH#"
 				}
 			}
