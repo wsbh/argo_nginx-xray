@@ -30,23 +30,12 @@
     <div><font color="#009900"><b>VMESS协议链接(VPS出口)：</b></font></div>
     <div>#vmlink#</div>
     <div id="vmess_qr"></div>
-    <div><font color="#009900"><b>VMESS协议链接(Warp出口)：</b></font></div>
-    <div>#vmlink_warp#</div>
-    <div id="vmess_warp_qr"></div>
-
     <div><font color="#009900"><b>VLESS协议链接(VPS出口)：</b></font></div>
     <div>#vllink#</div>
     <div id="vless_qr"></div>
-    <div><font color="#009900"><b>VLESS协议链接(Warp出口)：</b></font></div>
-    <div>#vllink_warp#</div>
-    <div id="vless_warp_qr"></div>
-
     <div><font color="#009900"><b>TROJAN协议链接(VPS出口)：</b></font></div>
     <div>#trlink#</div>
     <div id="tr_qr"></div>
-    <div><font color="#009900"><b>TROJAN协议链接(Warp出口)：</b></font></div>
-    <div>#trlink_warp#</div>
-    <div id="tr_warp_qr"></div>
 
     <div><font color="#009900"><b>SS协议明文：</b></font></div>
     <div>服务器地址：#ARGO_URL#</div>
@@ -66,13 +55,10 @@
                 correctLevel: QRCode.CorrectLevel.M,
             });
         }
-
         createQRCode("vmess_qr", "#vmlink#");
-        createQRCode("vmess_warp_qr", "#vmlink_warp#");
         createQRCode("vless_qr", "#vllink#");
-        createQRCode("vless_warp_qr", "#vllink_warp#");
         createQRCode("tr_qr", "#trlink#");
-        createQRCode("tr_warp_qr", "#trlink_warp#");
+
     </script>
 </body>
 </html>
