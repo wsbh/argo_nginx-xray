@@ -33,14 +33,9 @@
   | UUID         | 否 | de04add9-5c68-8bab-950c-08cd5320df18 | 可在线生成 https://www.uuidgenerator.net/ |
   | ARGO_AUTH    | 否 |    | Cloudflare固定隧道的Token(一长串Base64编码字符) |
   | VMESS_WSPATH  | 否 | /vmess | 以 / 开头 |
-  | VMESS_WSPATH_WARP  | 否 | /vmess_warp | 以 / 开头 |
   | VLESS_WSPATH  | 否 | /vless | 以 / 开头 |
-  | VLESS_WSPATH_WARP  | 否 | /vless_warp | 以 / 开头 |
   | TROJAN_WSPATH | 否 | /trojan | 以 / 开头 |
-  | TROJAN_WSPATH_WARP | 否 | /trojan_warp | 以 / 开头 |
   | SS_WSPATH     | 否 | /shadowsocks | 以 / 开头 |
-  | SS_WSPATH_WARP     | 否 | /shadowsocks_warp | 以 / 开头 |
-  | AGENT  | 否 |     | 哪吒探针的配置，格式为`-s <RPC服务端IP或域名>:<端口> -p <密钥Key>`，空格分格，可附加其他参数如`--tls` |
 
 * GitHub Actions 用到的变量
 
