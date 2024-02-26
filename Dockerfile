@@ -37,7 +37,7 @@ RUN cat template_config.json | base64 > template_config.base64 && \
 RUN rm -rf /usr/share/nginx/* && \
     mkdir -p /usr/share/nginx/html/ && \
     unzip -d /usr/share/nginx/html doge.zip && \
-    rm doge.zip && \
+    rm doge.zip
     
 # Configure supervisor
 RUN apt-get install -y supervisor && \
