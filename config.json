@@ -149,42 +149,6 @@
 			"protocol": "freedom",
 			"settings": {
 			}
-		},
-		{
-			"tag": "WARP",
-			"protocol": "wireguard",
-			"settings": {
-				"secretKey": "GKKdtjzBsc2fBIKO3M4rRXJIBdrrJefQi9chV63uKk0=",
-				"address": [
-					"172.16.0.2/32",
-					"2606:4700:110:8be1:c5e2:77d9:2e1:f130/128"
-				],
-				"peers": [
-					{
-						"publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-						"endpoint": "engage.cloudflareclient.com:2408"
-					}
-				]
-			}
 		}
-	],
-	"routing": {
-		"domainStrategy": "AsIs",
-		"rules": [
-			{
-				"type": "field",
-				"domain": [
-					"domain:openai.com",
-					"domain:ai.com"
-				],
-				"outboundTag": "WARP"
-			}
-		]
-	},
-	"dns": {
-		"server": [
-			"8.8.8.8",
-			"8.8.4.4"
-		]
-	}
+	]
 }
