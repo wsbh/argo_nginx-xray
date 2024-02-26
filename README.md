@@ -13,7 +13,7 @@
 
 使用固定隧道需要设置ARGO_AUTH（Token，一长串Base64编码字符，可在Cloudflare官网隧道的Overview页面里找到），并在Cloudflare官网上配置一个Tunnel的Public Hostname，其服务需要指向`127.0.0.1:8080`。
 如果未设置ARGO_AUTH则不启用该特性。启用固定隧道并不会禁用trycloudflare.com的域名。
-
+可以添加两个public hostname，一个指向http://127.0.0.1:8080，走nginx反代路径，另一个指向http://127.0.0.1:8888，走vless+ws无路径
 固定隧道的地址为类似`https://固定通道的域名/VMESS_WSPATH`，端口，UUID等其他设置与非固定隧道的配置一样。
 
 ### 远程管理
