@@ -16,11 +16,27 @@
 					}
 				],
 				"decryption": "none",
-				"fallbacks": [
-					{
-						"dest": 3001
-					}
-				]
+                "fallbacks":[
+                    {
+                        "dest":3001
+                    },
+                    {
+                        "path":"#VLESS_WSPATH#",
+                        "dest":20000
+                    },
+                    {
+                        "path":"#VMESS_WSPATH#",
+                        "dest":10000
+                    },
+                    {
+                        "path":"#TROJAN_WSPATH#",
+                        "dest":30000
+                    },
+                    {
+                        "path":"#SS_WSPATH#",
+                        "dest":40000
+                    }
+                ]
 			},
 			"streamSettings": {
 				"network": "tcp"
