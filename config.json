@@ -5,44 +5,44 @@
 		"loglevel": "none"
 	},
 	"inbounds": [
-		        {
-            "port":8888,
-            "protocol":"vless",
-            "settings":{
-                "clients":[
-                    {
-                        "id":"#UUID#",
-                        "flow":"xtls-rprx-vision"
-                    }
-                ],
-                "decryption":"none",
-                "fallbacks":[
-                    {
-                        "dest":3001
-                    }
-                ]
-            },
-            "streamSettings":{
-                "network":"tcp"
-            }
-        },
-        {
-            "port":3001,
-            "listen":"127.0.0.1",
-            "protocol":"vless",
-            "settings":{
-                "clients":[
-                    {
-                        "id":"#UUID#"
-                    }
-                ],
-                "decryption":"none"
-            },
-            "streamSettings":{
-                "network":"ws",
-                "security":"none"
-            }
-        },
+		{
+			"port": 8888,
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"flow": "xtls-rprx-vision"
+					}
+				],
+				"decryption": "none",
+				"fallbacks": [
+					{
+						"dest": 3001
+					}
+				]
+			},
+			"streamSettings": {
+				"network": "tcp"
+			}
+		},
+		{
+			"port": 3001,
+			"listen": "127.0.0.1",
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#"
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"security": "none"
+			}
+		},
 		{
 			"port": 20000,
 			"listen": "127.0.0.1",
@@ -130,7 +130,45 @@
 	},
 	"outbounds": [
 		{
-			"protocol": "freedom"
+			"protocol": "freedom",
+			"settings": {
+			}
+		},
+		{
+			"tag": "WARP",
+			"protocol": "wireguard",
+			"settings": {
+				"secretKey": "GKKdtjzBsc2fBIKO3M4rRXJIBdrrJefQi9chV63uKk0=",
+				"address": [
+					"172.16.0.2/32",
+					"2606:4700:110:8be1:c5e2:77d9:2e1:f130/128"
+				],
+				"peers": [
+					{
+						"publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+						"endpoint": "engage.cloudflareclient.com:2408"
+					}
+				]
+			}
 		}
-	]
+	],
+	"routing": {
+		"domainStrategy": "AsIs",
+		"rules": [
+			{
+				"type": "field",
+				"domain": [
+					"domain:openai.com",
+					"domain:ai.com"
+				],
+				"outboundTag": "WARP"
+			}
+		]
+	},
+	"dns": {
+		"server": [
+			"8.8.8.8",
+			"8.8.4.4"
+		]
+	}
 }
