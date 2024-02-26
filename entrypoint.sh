@@ -8,15 +8,11 @@ DISPLAY_NAME=${DISPLAY_NAME:-'Argo_xray_'}
 # 定义 UUID 及 伪装路径,请自行修改.(注意:伪装路径以 / 符号开始,为避免不必要的麻烦,请不要使用特殊符号.)
 UUID=${UUID:-'de04add9-5c68-8bab-950c-08cd5320df18'}
 VMESS_WSPATH=${VMESS_WSPATH:-'/vmess'}
-VMESS_WARP_WSPATH=${VMESS_WARP_WSPATH:-'/vmess_warp'}
 VLESS_WSPATH=${VLESS_WSPATH:-'/vless'}
-VLESS_WARP_WSPATH=${VLESS_WARP_WSPATH:-'/vless_warp'}
 TROJAN_WSPATH=${TROJAN_WSPATH:-'/trojan'}
-TROJAN_WARP_WSPATH=${TROJAN_WARP_WSPATH:-'/trojan_warp'}
 SS_WSPATH=${SS_WSPATH:-'/shadowsocks'}
-SS_WARP_WSPATH=${SS_WARP_WSPATH:-'/shadowsocks_warp'}
 
-VAR_NAMES=("UUID" "VMESS_WSPATH" "VMESS_WARP_WSPATH" "VLESS_WSPATH" "VLESS_WARP_WSPATH" "TROJAN_WSPATH" "TROJAN_WARP_WSPATH" "SS_WSPATH" "SS_WARP_WSPATH" "DISPLAY_NAME" "ARGO_AUTH" "AGENT")
+VAR_NAMES=("UUID" "VMESS_WSPATH" "VLESS_WSPATH" "TROJAN_WSPATH" "SS_WSPATH" "DISPLAY_NAME" "ARGO_AUTH" "AGENT")
 
 # Store the settings ------------------------------------------
 VAR_STORAGE="env_vars.sh"
@@ -63,13 +59,5 @@ cat template_config.base64 | base64 --decode | perform_variable_substitution "${
 [ -f "geosite.dat" ] && rm "geosite.dat"
 wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
 wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
-
-# 启动Warp, 需要在Dockerfile中启用安装Warp官方客户端
-# warp-svc &
-# warp-cli register
-# warp-cli set-custom-endpoint <xxx>
-# warp-cli set-mode proxy
-# warp-cli set-proxy-port 1080
-# warp-cli connect
 
 supervisord
