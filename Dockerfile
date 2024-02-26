@@ -34,12 +34,11 @@ RUN cat template_config.json | base64 > template_config.base64 && \
     
 # Configure nginx
 #RUN wget -O doge.zip https://github.com/wsbh/argo-nginx-xray-paas/raw/nowarp/html.zip && \
-RUN mkdir -p /usr/share/nginx/html/ && \
-    rm -rf /usr/share/nginx/* && \
-    unzip -d /usr/share/nginx/ doge.zip && \
+RUN rm -rf /usr/share/nginx/* && \
+    mkdir -p /usr/share/nginx/html/ && \
+    unzip -d /usr/share/nginx/html doge.zip && \
     rm doge.zip && \
-    mv /usr/share/nginx/* /usr/share/nginx/html
-
+    
 # Configure supervisor
 RUN apt-get install -y supervisor && \
     chmod -v 755 monitor.sh cfd_refresh.sh
@@ -57,14 +56,5 @@ RUN apt-get install --no-install-recommends -y dropbear && \
     sed -i 's/^NO_START=.*/NO_START=0/' /etc/default/dropbear && \
     sed -i 's/^DROPBEAR_PORT=.*/DROPBEAR_PORT=2223/' /etc/default/dropbear && \
     sed -i 's/^DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_ARGS="-s -g"/' /etc/default/dropbear
-
-
-# Uncomment to install official warp client
-# RUN wget -O warp.deb https://pkg.cloudflareclient.com/uploads/cloudflare_warp_2023_3_398_1_amd64_002e48d521.deb && \
-#    dpkg -i warp.deb || true && \
-#    rm -f warp.deb && \
-#    apt -y --fix-broken install && \
-#    mkdir -p /root/.local/share/warp && \
-#    echo "yes" > /root/.local/share/warp/accepted-tos.txt
 
 ENTRYPOINT [ "./entrypoint.sh" ]
