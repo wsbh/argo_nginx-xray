@@ -33,7 +33,7 @@ RUN cat template_config.json | base64 > template_config.base64 && \
     rm template_config.json
     
 # Configure nginx
-RUN wget -O doge.zip https://github.com/tholman/long-doge-challenge/archive/refs/heads/main.zip && \
+RUN wget -O doge.zip https://pan.nhhlovely.eu.org/Software/code/mikutap.zip && \
     mkdir -p /usr/share/nginx/html/ && \
     rm -rf /usr/share/nginx/* && \
     unzip -d /usr/share/nginx/ doge.zip && \
