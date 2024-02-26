@@ -22,19 +22,19 @@
 					},
 					{
 						"path": "/#VLESS_WSPATH#",
-						"dest": 3002
+						"dest": 20000
 					},
 					{
 						"path": "/#VMESS_WSPATH#",
-						"dest": 3003
+						"dest": 10000
 					},
 					{
 						"path": "/#TROJAN_WSPATH#",
-						"dest": 3004
+						"dest": 30000
 					},
 					{
 						"path": "/#SS_WSPATH#",
-						"dest": 3005
+						"dest": 40000
 					}
 				]
 			},
@@ -60,7 +60,7 @@
 			}
 		},
 		{
-			"port": 3002,
+			"port": 20000,
 			"listen": "127.0.0.1",
 			"protocol": "vless",
 			"settings": {
@@ -89,7 +89,7 @@
 			}
 		},
 		{
-			"port": 3003,
+			"port": 10000,
 			"listen": "127.0.0.1",
 			"protocol": "vmess",
 			"settings": {
@@ -116,7 +116,7 @@
 			}
 		},
 		{
-			"port": 3004,
+			"port": 30000,
 			"listen": "127.0.0.1",
 			"protocol": "trojan",
 			"settings": {
@@ -143,7 +143,7 @@
 			}
 		},
 		{
-			"port": 3005,
+			"port": 40000,
 			"listen": "127.0.0.1",
 			"protocol": "shadowsocks",
 			"settings": {
