@@ -7,7 +7,6 @@
 * 增加订阅模式，以防止每次Cloudflare分配的域名改变。可在V2rayA和安卓上的V2rayNG中添加订阅，地址为`https://<PaaS云服务商分配的域名>/<UUID>.txt`。每次发现之前的地址不可用之后先刷新下订阅再尝试连接，如果还不行过30秒刷一次再试，因为容器启动需要时间。
 * `https://<PaaS云服务商分配的域名>/cf.txt` 为最新的Cloudflare分配域名。
 * 增加Cloudflared多次重试，应对Cloudflare偶尔抽风。
-* 在连接路径后面增加"_warp"来使流量全程走Cloudflare Warp。
 * `https://<PaaS云服务商分配的域名>/<UUID>.rootfs/`可直接下载rootfs中的内容（可在nginx.conf中删除相关段以禁用）。
 
 ### Cloudflare固定隧道
