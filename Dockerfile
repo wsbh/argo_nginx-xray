@@ -7,7 +7,6 @@ FROM nginx:latest
 
 WORKDIR /app
 USER root
-EXPOSE 8080
 COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 COPY doge.zip ./
 COPY webpage.html ./template_webpage.html
