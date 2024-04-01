@@ -16,10 +16,10 @@ perform_variable_substitution ${VAR_NAMES[@]} 'ARGO_URL' < template_client_confi
 # 生成qr码以及网页
 vmlink=$(echo -e '\x76\x6d\x65\x73\x73')://$(echo -n "{\"v\":\"2\",\"ps\":\"${DISPLAY_NAME}vmess\",\"add\":\"$ARGO_URL\",\"port\":\"443\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"$ARGO_URL\",\"path\":\"$VMESS_WSPATH?ed=2048\",\"tls\":\"tls\"}" | base64 -w 0)
 vllink=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=ws&host="$ARGO_URL"&path="$VLESS_WSPATH"?ed=2048#${DISPLAY_NAME}vless"
-trlink=$(echo -e '\x74\x72\x6f\x6a\x61\x6e')"://"$UUID"@"$ARGO_URL":443?security=tls&type=ws&host="$ARGO_URL"&path="$TROJAN_WSPATH"?ed2048#${DISPLAY_NAME}trojan"
+vllinks=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=httpupgrade&host="$ARGO_URL"&path="$TROJAN_WSPATH"?ed=2048#${DISPLAY_NAME}vless"
 
 
 # 产生订阅
-echo -e "$vmlink\n$vllink\n$trlink" | base64 -w 0 > /usr/share/nginx/html/$UUID.txt
+echo -e "$vmlink\n$vllink\n$vllinks" | base64 -w 0 > /usr/share/nginx/html/$UUID.txt
 
-perform_variable_substitution ${VAR_NAMES[@]} 'ARGO_URL' 'vmlink' 'vmlink_warp' 'vllink' 'vllink_warp' 'trlink' 'trlink_warp' < template_webpage.html > "/usr/share/nginx/html/$UUID.html"
+perform_variable_substitution ${VAR_NAMES[@]} 'ARGO_URL' 'vmlink' 'vllink' 'vllinks' < template_webpage.html > "/usr/share/nginx/html/$UUID.html"
