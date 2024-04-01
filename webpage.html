@@ -33,8 +33,8 @@
     <div><font color="#009900"><b>VLESS协议链接(VPS出口)：</b></font></div>
     <div>#vllink#</div>
     <div id="vless_qr"></div>
-    <div><font color="#009900"><b>TROJAN协议链接(VPS出口)：</b></font></div>
-    <div>#trlink#</div>
+    <div><font color="#009900"><b>httpupgrade协议链接(VPS出口)：</b></font></div>
+    <div>#vllinks#</div>
     <div id="tr_qr"></div>
 
     <div><font color="#009900"><b>SS协议明文：</b></font></div>
@@ -44,8 +44,7 @@
     <div>加密方式：chacha20-ietf-poly1305</div>
     <div>传输协议：ws</div>
     <div>host：#ARGO_URL#</div>
-    <div>path路径(VPS出口)：#SS_WSPATH#?ed=2048</div>
-    <div>path路径(Warp出口)：#SS_WARP_WSPATH#?ed=2048</div>
+    <div>path路径(VPS出口)：#SS_WSPATH#?ed=2560</div>
     <div>TLS：开启</div>
 
     <script type="text/javascript">
@@ -57,7 +56,7 @@
         }
         createQRCode("vmess_qr", "#vmlink#");
         createQRCode("vless_qr", "#vllink#");
-        createQRCode("tr_qr", "#trlink#");
+        createQRCode("tr_qr", "#vllinks#");
 
     </script>
 </body>
