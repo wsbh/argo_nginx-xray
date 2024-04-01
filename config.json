@@ -19,19 +19,19 @@
                     		{
                         		"dest":80
                     		},
+				{
+                        		"path":"#VMESS_WSPATH#",
+                        		"dest":10000
+                    		},
                     		{
                         		"path":"#VLESS_WSPATH#",
                         		"dest":20000
                     		},
                     		{
-                        		"path":"#VMESS_WSPATH#",
-                        		"dest":10000
-                    		},
-                    		{
                         		"path":"#TROJAN_WSPATH#",
                         		"dest":30000
                     		},
-                    		{
+				{
                         		"path":"#SS_WSPATH#",
                         		"dest":40000
                     		}
@@ -39,6 +39,25 @@
 		},
 			"streamSettings": {
 				"network": "tcp"
+			}
+		},
+		{
+			"port": 10000,
+			"listen": "127.0.0.1",
+			"protocol": "vmess",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"alterId": 0
+					}
+				]
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "#VMESS_WSPATH#"
+				}
 			}
 		},
 		{
@@ -63,39 +82,21 @@
 			}
 		},
 		{
-			"port": 10000,
+			"port": 30000,
 			"listen": "127.0.0.1",
-			"protocol": "vmess",
+			"protocol": "vless",
 			"settings": {
 				"clients": [
 					{
 						"id": "#UUID#",
-						"alterId": 0
+						"level": 0
 					}
-				]
+				],
+				"decryption": "none"
 			},
 			"streamSettings": {
-				"network": "ws",
-				"wsSettings": {
-					"path": "#VMESS_WSPATH#"
-				}
-			}
-		},
-		{
-			"port": 30000,
-			"listen": "127.0.0.1",
-			"protocol": "trojan",
-			"settings": {
-				"clients": [
-					{
-						"password": "#UUID#"
-					}
-				]
-			},
-			"streamSettings": {
-				"network": "ws",
-				"security": "none",
-				"wsSettings": {
+				"network": "httpupgrade",
+				"httpupgradeSettings": {
 					"path": "#TROJAN_WSPATH#"
 				}
 			}
