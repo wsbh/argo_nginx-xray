@@ -14,9 +14,9 @@ echo "!!! URL is: $ARGO_URL !!!" 1>&2
 perform_variable_substitution ${VAR_NAMES[@]} 'ARGO_URL' < template_client_config.json > "/usr/share/nginx/html/$UUID.json"
 
 # 生成qr码以及网页
-vmlink=$(echo -e '\x76\x6d\x65\x73\x73')://$(echo -n "{\"v\":\"2\",\"ps\":\"${DISPLAY_NAME}vmess\",\"add\":\"$ARGO_URL\",\"port\":\"443\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"$ARGO_URL\",\"path\":\"$VMESS_WSPATH?ed=2048\",\"tls\":\"tls\"}" | base64 -w 0)
-vllink=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=ws&host="$ARGO_URL"&path="$VLESS_WSPATH"?ed=2048#${DISPLAY_NAME}vless"
-vllinks=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=httpupgrade&host="$ARGO_URL"&path="$TROJAN_WSPATH"?ed=2048#${DISPLAY_NAME}vless"
+vmlink=$(echo -e '\x76\x6d\x65\x73\x73')://$(echo -n "{\"v\":\"2\",\"ps\":\"${DISPLAY_NAME}vmess\",\"add\":\"$ARGO_URL\",\"port\":\"443\",\"id\":\"$UUID\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"$ARGO_URL\",\"path\":\"$VMESS_WSPATH?ed=2560\",\"tls\":\"tls\"}" | base64 -w 0)
+vllink=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=ws&host="$ARGO_URL"&path="$VLESS_WSPATH"?ed=2560#${DISPLAY_NAME}vless"
+vllinks=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=httpupgrade&host="$ARGO_URL"&path="$TROJAN_WSPATH"?ed=2560#${DISPLAY_NAME}vless"
 
 
 # 产生订阅
