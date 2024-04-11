@@ -4,40 +4,124 @@
 		"error": "/dev/null",
 		"loglevel": "none"
 	},
-    "inbounds": [ 
-        {
-            "listen": "0.0.0.0",
-            "port": 8888,
-            "protocol": "vless",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "#UUID#", 
-                        "flow": "xtls-rprx-vision" 
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "security": "reality",
-                "realitySettings": {
-                    "show": false, 
-                    "dest": "www.lovelive-anime.jp:443", 
-                    "xver": 0, 
-                    "serverNames": [ 
-                        "www.lovelive-anime.jp",
-                        "lovelive-anime.jp"
-                    ],
-                    "privateKey": "OMqrfJqTb2FeRWPxg5bOzzy3RccG54HH0L7tGUmaIn4", 
-                    "shortIds": [ 
-                        "6ba85179e30d4fc2", 
-                        "0123456789abcdef" 
-                    ]
-                }
-            }
-        }
-    ],
+	"inbounds": [
+		{
+			"port": 8888,
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#"
+					}
+				],
+				"decryption": "none",
+                		"fallbacks":[
+                    		{
+                        		"dest":80
+                    		},
+				{
+                        		"path":"#VMESS_WSPATH#",
+                        		"dest":10000
+                    		},
+                    		{
+                        		"path":"#VLESS_WSPATH#",
+                        		"dest":20000
+                    		},
+                    		{
+                        		"path":"#TROJAN_WSPATH#",
+                        		"dest":30000
+                    		},
+				{
+                        		"path":"#SS_WSPATH#",
+                        		"dest":40000
+                    		}
+                	]
+		},
+			"streamSettings": {
+				"network": "tcp"
+			}
+		},
+		{
+			"port": 10000,
+			"listen": "127.0.0.1",
+			"protocol": "vmess",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"alterId": 0
+					}
+				]
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "#VMESS_WSPATH#"
+				}
+			}
+		},
+		{
+			"port": 20000,
+			"listen": "127.0.0.1",
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"level": 0
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"security": "none",
+				"wsSettings": {
+					"path": "#VLESS_WSPATH#"
+				}
+			}
+		},
+		{
+			"port": 30000,
+			"listen": "127.0.0.1",
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"level": 0
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "httpupgrade",
+				"httpupgradeSettings": {
+					"path": "#TROJAN_WSPATH#"
+				}
+			}
+		},
+		{
+			"port": 40000,
+			"listen": "127.0.0.1",
+			"protocol": "shadowsocks",
+			"settings": {
+				"clients": [
+					{
+						"method": "chacha20-ietf-poly1305",
+						"password": "#UUID#"
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "#SS_WSPATH#"
+				}
+			}
+		}
+	],
 	"dns": {
 		"servers": [
 			"https+local://8.8.8.8/dns-query"
