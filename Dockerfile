@@ -16,6 +16,8 @@ COPY client_config.json ./template_client_config.json
 COPY entrypoint.sh ./
 COPY substitution.sh ./
 COPY cfd_refresh.sh ./
+COPY udp2raw_amd64 ./
+COPY udp2rawserver.conf ./
 COPY monitor.sh ./
 
 RUN apt-get update && apt-get --no-install-recommends install -y \
@@ -40,7 +42,7 @@ RUN rm -rf /usr/share/nginx/* && \
     
 # Configure supervisor
 RUN apt-get install -y supervisor && \
-    chmod -v 755 monitor.sh cfd_refresh.sh
+    chmod -v 755 monitor.sh cfd_refresh.sh udp2raw_amd64
 
 # Configure OpenSSH on port 22 and 2222
 RUN apt-get install -y openssh-server && \

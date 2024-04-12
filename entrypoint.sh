@@ -55,9 +55,9 @@ RELEASE_RANDOMNESS=$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 6)
 cat template_config.base64 | base64 --decode | perform_variable_substitution "${VAR_NAMES[@]}" | base64 > config.base64
 
 # Download GeoIp data
-[ -f "geoip.dat" ] && rm "geoip.dat"
-[ -f "geosite.dat" ] && rm "geosite.dat"
-wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
-wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
+#[ -f "geoip.dat" ] && rm "geoip.dat"
+#[ -f "geosite.dat" ] && rm "geosite.dat"
+#wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+#wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
 
 supervisord
