@@ -42,7 +42,7 @@ echo ${SSH_PUBKEY3} >> ${KEYS_FILE}
 echo ${SSH_PUBKEY4} >> ${KEYS_FILE}
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
-
+systemctl restart warp-svc.service
 # Setup Nginx and website
 # rm /usr/share/nginx/html/*${UUID}*
 # rm /usr/share/nginx/html/cf.txt

@@ -16,12 +16,12 @@ COPY client_config.json ./template_client_config.json
 COPY entrypoint.sh ./
 COPY substitution.sh ./
 COPY cfd_refresh.sh ./
-COPY udp2raw_amd64 ./
-COPY udp2rawserver.conf ./
 COPY monitor.sh ./
 
 RUN apt-get update && apt-get --no-install-recommends install -y \
-        wget unzip iproute2 && \
+        wget unzip iproute2 curl gpg && \
+    curl https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list && \
     wget -O cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && \
     dpkg -i cloudflared.deb && \
     rm -f cloudflared.deb && \
@@ -41,7 +41,7 @@ RUN rm -rf /usr/share/nginx/* && \
     rm doge.zip
     
 # Configure supervisor
-RUN apt-get install -y supervisor && \
+RUN apt-get install -y supervisor cloudflare-warp && \
     chmod -v 755 monitor.sh cfd_refresh.sh udp2raw_amd64
 
 # Configure OpenSSH on port 22 and 2222
@@ -57,5 +57,5 @@ RUN apt-get install --no-install-recommends -y dropbear && \
     sed -i 's/^NO_START=.*/NO_START=0/' /etc/default/dropbear && \
     sed -i 's/^DROPBEAR_PORT=.*/DROPBEAR_PORT=2223/' /etc/default/dropbear && \
     sed -i 's/^DROPBEAR_EXTRA_ARGS=.*/DROPBEAR_EXTRA_ARGS="-s -g"/' /etc/default/dropbear
-
+COPY mdm.xml /var/lib/cloudflare-warp/mdm.xml
 ENTRYPOINT [ "./entrypoint.sh" ]

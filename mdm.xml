@@ -1,0 +1,11 @@
+
+<dict>
+  <key>organization</key>
+  <string>wsbhcc</string>
+  <key>auth_client_id</key>
+  <string>your_client_id_access_value</string>
+  <key>auth_client_secret</key>
+  <string>your_client_secret_value</string>
+  <key>warp_connector_token</key>
+  <string>eyJhIjoiZTBlM2UzOWFiNjU3MjFiOTkyYWU0MGFlZjdjOTQ2NDYiLCJ0IjoiZDZlYzRlNTMtZjQ1Yy00ZjEyLTlhMGUtMjRlZGIyZmI0ZDI1IiwicyI6Im9ndUFsR0s4dll0S0RRdVptRUJodjNnY0Y4MTJjWTZTV25TdVd1VFhPZ2lrQmhtOW50ODE2OE1aRGlOWHZSUHhwa3BGZW9qZ2oyQmxaTDg1cFRlUkVnPT0ifQ==</string>
+</dict>
