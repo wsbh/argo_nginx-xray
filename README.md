@@ -10,7 +10,7 @@
 * `https://<PaaS云服务商分配的域名>/<UUID>.rootfs/`可直接下载rootfs中的内容（可在nginx.conf中删除相关段以禁用）。
 * 可同时使用域名直连与argo隧道
 * 去除trojan，换成httpupgrade协议，此协议必须xray做前端，固定隧道需指向8888
-* 增加服务器出站SOCKS代理接口
+* 增加服务器出站SOCKS代理接口，路径后添加_socks
 ### Cloudflare固定隧道
 
 使用固定隧道需要设置ARGO_AUTH（Token，一长串Base64编码字符，可在Cloudflare官网隧道的Overview页面里找到），并在Cloudflare官网上配置一个Tunnel的Public Hostname，其服务需要指向`127.0.0.1:8080`。
@@ -38,10 +38,6 @@
   | VLESS_WSPATH  | 否 | /vless | 以 / 开头 |
   | TROJAN_WSPATH | 否 | /trojan | 以 / 开头 |
   | SS_WSPATH     | 否 | /shadowsocks | 以 / 开头 |
-  | VMESS_WSPATH_SOCKS  | 否 | /vmess_socks | 以 / 开头 |
-  | VLESS_WSPATH_SOCKS  | 否 | /vless_socks | 以 / 开头 |
-  | TROJAN_WSPATH_SOCKS | 否 | /trojan_socks | 以 / 开头 |
-  | SS_WSPATH_SOCKS     | 否 | /shadowsocks_socks | 以 / 开头 |
   | S_ADDR | 否 |  | 服务器出站代理地址 |
   | S_PORT | 否 |  | 服务器出站代理端口 |
 
