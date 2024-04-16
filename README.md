@@ -9,13 +9,15 @@
 * 增加Cloudflared多次重试，应对Cloudflare偶尔抽风。
 * `https://<PaaS云服务商分配的域名>/<UUID>.rootfs/`可直接下载rootfs中的内容（可在nginx.conf中删除相关段以禁用）。
 * 可同时使用域名直连与argo隧道
+* 去除trojan，换成httpupgrade协议，此协议必须xray做前端，固定隧道需指向8888
+* 增加服务器出站SOCKS代理接口，路径后添加_socks
 ### Cloudflare固定隧道
 
 使用固定隧道需要设置ARGO_AUTH（Token，一长串Base64编码字符，可在Cloudflare官网隧道的Overview页面里找到），并在Cloudflare官网上配置一个Tunnel的Public Hostname，其服务需要指向`127.0.0.1:8080`。
 如果未设置ARGO_AUTH则不启用该特性。启用固定隧道并不会禁用trycloudflare.com的域名。
 固定隧道的地址为类似`https://固定通道的域名/VMESS_WSPATH`，端口，UUID等其他设置与非固定隧道的配置一样。
 
-public hostname指向8080，则由nginx入站分流，若指向8888，则由xray入站回落，端口，UUID等设置一样。
+固定隧道指向8080，则由nginx入站分流，若指向8888，则由xray入站回落，端口，UUID等设置一样。
 ### 远程管理
 
 * 增加ssh服务器，可连接至后台。该ssh服务在公网上不可见，需要以无"_warp"的路径连接到节点，然后通过代理来连接：`ssh root@127.0.0.1 -p2223 -v -o StrictHostKeyChecking=no -o ProxyCommand="/usr/bin/nc -x 127.0.0.1:1080 %h %p"`，其中127.0.0.1:1080为本地socks5服务器。
@@ -36,6 +38,8 @@ public hostname指向8080，则由nginx入站分流，若指向8888，则由xray
   | VLESS_WSPATH  | 否 | /vless | 以 / 开头 |
   | TROJAN_WSPATH | 否 | /trojan | 以 / 开头 |
   | SS_WSPATH     | 否 | /shadowsocks | 以 / 开头 |
+  | S_ADDR | 否 |  | 服务器出站代理地址 |
+  | S_PORT | 否 |  | 服务器出站代理端口 |
 
 * GitHub Actions 用到的变量
 

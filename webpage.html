@@ -36,6 +36,15 @@
     <div><font color="#009900"><b>httpupgrade协议链接(VPS出口)：</b></font></div>
     <div>#vllinks#</div>
     <div id="tr_qr"></div>
+    <div><font color="#009900"><b>VMESS协议链接(SOCKS出口)：</b></font></div>
+    <div>#vmlink_socks#</div>
+    <div id="vmess_qr_socks"></div>
+    <div><font color="#009900"><b>VLESS协议链接(SOCKS出口)：</b></font></div>
+    <div>#vllink_socks#</div>
+    <div id="vless_qr_socks"></div>
+    <div><font color="#009900"><b>httpupgrade协议链接(SOCKS出口)：</b></font></div>
+    <div>#vllinks_socks#</div>
+    <div id="tr_qr_socks"></div>
 
     <div><font color="#009900"><b>SS协议明文：</b></font></div>
     <div>服务器地址：#ARGO_URL#</div>
@@ -45,6 +54,7 @@
     <div>传输协议：ws</div>
     <div>host：#ARGO_URL#</div>
     <div>path路径(VPS出口)：#SS_WSPATH#?ed=2560</div>
+    <div>path路径(SOCKS出口)：#SS_WSPATH_SOCKS#?ed=2560</div>
     <div>TLS：开启</div>
 
     <script type="text/javascript">
@@ -57,6 +67,9 @@
         createQRCode("vmess_qr", "#vmlink#");
         createQRCode("vless_qr", "#vllink#");
         createQRCode("tr_qr", "#vllinks#");
+        createQRCode("vmess_qr_socks", "#vmlink_socks#");
+        createQRCode("vless_qr_socks", "#vllink_socks#");
+        createQRCode("tr_qr_socks", "#vllinks_socks#");
 
     </script>
 </body>

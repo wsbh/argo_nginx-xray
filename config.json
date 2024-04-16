@@ -15,28 +15,44 @@
 					}
 				],
 				"decryption": "none",
-                		"fallbacks":[
-                    		{
-                        		"dest":80
-                    		},
-				{
-                        		"path":"#VMESS_WSPATH#",
-                        		"dest":10000
-                    		},
-                    		{
-                        		"path":"#VLESS_WSPATH#",
-                        		"dest":20000
-                    		},
-                    		{
-                        		"path":"#TROJAN_WSPATH#",
-                        		"dest":30000
-                    		},
-				{
-                        		"path":"#SS_WSPATH#",
-                        		"dest":40000
-                    		}
-                	]
-		},
+				"fallbacks": [
+					{
+						"dest": 80
+					},
+					{
+						"path": "#VMESS_WSPATH#",
+						"dest": 10000
+					},
+										{
+						"path": "#VMESS_WSPATH_SOCKS#",
+						"dest": 10001
+					},
+					{
+						"path": "#VLESS_WSPATH#",
+						"dest": 20000
+					},
+					{
+						"path": "#VLESS_WSPATH_SOCKS#",
+						"dest": 20001
+					},
+					{
+						"path": "#TROJAN_WSPATH#",
+						"dest": 30000
+					},
+					{
+						"path": "#TROJAN_WSPATH_SOCKS#",
+						"dest": 30001
+					},
+					{
+						"path": "#SS_WSPATH#",
+						"dest": 40000
+					},
+										{
+						"path": "#SS_WSPATH_SOCKS#",
+						"dest": 40001
+					}
+				]
+			},
 			"streamSettings": {
 				"network": "tcp"
 			}
@@ -57,6 +73,26 @@
 				"network": "ws",
 				"wsSettings": {
 					"path": "#VMESS_WSPATH#"
+				}
+			}
+		},
+		{
+			"tag": "socksinvm",
+			"port": 10001,
+			"listen": "127.0.0.1",
+			"protocol": "vmess",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"alterId": 0
+					}
+				]
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "#VMESS_WSPATH_SOCKS#"
 				}
 			}
 		},
@@ -82,6 +118,28 @@
 			}
 		},
 		{
+			"tag": "socksinvl",
+			"port": 20001,
+			"listen": "127.0.0.1",
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"level": 0
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"security": "none",
+				"wsSettings": {
+					"path": "#VLESS_WSPATH_SOCKS#"
+				}
+			}
+		},
+		{
 			"port": 30000,
 			"listen": "127.0.0.1",
 			"protocol": "vless",
@@ -98,6 +156,27 @@
 				"network": "httpupgrade",
 				"httpupgradeSettings": {
 					"path": "#TROJAN_WSPATH#"
+				}
+			}
+		},
+		{
+			"tag": "socksinvt",
+			"port": 30001,
+			"listen": "127.0.0.1",
+			"protocol": "vless",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"level": 0
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "httpupgrade",
+				"httpupgradeSettings": {
+					"path": "#TROJAN_WSPATH_SOCKS#"
 				}
 			}
 		},
@@ -120,6 +199,27 @@
 					"path": "#SS_WSPATH#"
 				}
 			}
+		},
+		{
+			"tag": "socksinvs",
+			"port": 40001,
+			"listen": "127.0.0.1",
+			"protocol": "shadowsocks",
+			"settings": {
+				"clients": [
+					{
+						"method": "chacha20-ietf-poly1305",
+						"password": "#UUID#"
+					}
+				],
+				"decryption": "none"
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "#SS_WSPATH_SOCKS#"
+				}
+			}
 		}
 	],
 	"dns": {
@@ -130,8 +230,29 @@
 	"outbounds": [
 		{
 			"protocol": "freedom",
+			"settings": {}
+		},
+		{
+			"protocol": "socks",
 			"settings": {
-			}
+				"servers": [
+					{
+						"address": "#S_ADDR#",
+						"port": #S_PORT#
+					}
+				]
+			},
+			"tag": "socksout"
 		}
-	]
+	],
+	"routing": {
+		"domainStrategy": "AsIs",
+		"rules":[
+			{
+			"type": "field",
+			"inboundTag": ["socksinvm","socksinvl","socksinvt","socksinvs"],
+			"outboundTag": "socksout"
+			}
+		]
+	}
 }
