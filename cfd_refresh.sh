@@ -22,6 +22,6 @@ vllink_socks=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryp
 vllinks_socks=$(echo -e '\x76\x6c\x65\x73\x73')"://"$UUID"@"$ARGO_URL":443?encryption=none&security=tls&type=httpupgrade&host="$ARGO_URL"&path="$TROJAN_WSPATH_SOCKS"#${DISPLAY_NAME}vless"
 
 # 产生订阅
-echo -e "$vmlink\n$vllink\n$vllinks$vmlink_socks\n$vllink_socks\n$vllinks_socks" | base64 -w 0 > /usr/share/nginx/html/$UUID.txt
+echo -e "$vmlink\n$vllink\n$vllinks\n$vmlink_socks\n$vllink_socks\n$vllinks_socks" | base64 -w 0 > /usr/share/nginx/html/$UUID.txt
 
 perform_variable_substitution ${VAR_NAMES[@]} 'ARGO_URL' 'vmlink' 'vllink' 'vllinks' 'vmlink_socks' 'vllink_socks' 'vllinks_socks' < template_webpage.html > "/usr/share/nginx/html/$UUID.html"

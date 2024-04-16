@@ -9,6 +9,7 @@
 * 增加Cloudflared多次重试，应对Cloudflare偶尔抽风。
 * `https://<PaaS云服务商分配的域名>/<UUID>.rootfs/`可直接下载rootfs中的内容（可在nginx.conf中删除相关段以禁用）。
 * 可同时使用域名直连与argo隧道
+* 去除trojan，换成httpupgrade协议，此协议必须xray做前端，固定隧道需指向8888
 * 增加服务器出站SOCKS代理接口
 ### Cloudflare固定隧道
 

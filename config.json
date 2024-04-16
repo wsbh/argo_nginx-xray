@@ -76,8 +76,8 @@
 				}
 			}
 		},
-				{
-			"tag": "socksin1",
+		{
+			"tag": "socksinvm",
 			"port": 10001,
 			"listen": "127.0.0.1",
 			"protocol": "vmess",
@@ -117,8 +117,8 @@
 				}
 			}
 		},
-				{
-								"tag": "socksin2",
+		{
+			"tag": "socksinvl",
 			"port": 20001,
 			"listen": "127.0.0.1",
 			"protocol": "vless",
@@ -159,8 +159,8 @@
 				}
 			}
 		},
-				{
-					"tag": "socksin3",
+		{
+			"tag": "socksinvt",
 			"port": 30001,
 			"listen": "127.0.0.1",
 			"protocol": "vless",
@@ -200,8 +200,8 @@
 				}
 			}
 		},
-				{
-					"tag": "socksin4",
+		{
+			"tag": "socksinvs",
 			"port": 40001,
 			"listen": "127.0.0.1",
 			"protocol": "shadowsocks",
@@ -248,10 +248,11 @@
 	"routing": {
 		"domainStrategy": "AsIs",
 		"rules":[
-		{
+			{
 			"type": "field",
-			"inboundTag": ["socksin1","socksin2","socksin3","socksin4"],
+			"inboundTag": ["socksinvm","socksinvl","socksinvt","socksinvs"],
 			"outboundTag": "socksout"
-		}]
+			}
+		]
 	}
 }
