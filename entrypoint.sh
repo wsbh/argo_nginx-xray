@@ -7,12 +7,13 @@ DISPLAY_NAME=${DISPLAY_NAME:-'Argo_xray_'}
 
 # 定义 UUID 及 伪装路径,请自行修改.(注意:伪装路径以 / 符号开始,为避免不必要的麻烦,请不要使用特殊符号.)
 UUID=${UUID:-'de04add9-5c68-8bab-950c-08cd5320df18'}
+UUID2=${UUID2:-'80f3e0a9-b0e3-43f9-ab0a-9b41b538a4ba'}
 VMESS_WSPATH=${VMESS_WSPATH:-'/vmess'}
 VLESS_WSPATH=${VLESS_WSPATH:-'/vless'}
 TROJAN_WSPATH=${TROJAN_WSPATH:-'/trojan'}
 SS_WSPATH=${SS_WSPATH:-'/shadowsocks'}
 
-VAR_NAMES=("UUID" "VMESS_WSPATH" "VLESS_WSPATH" "TROJAN_WSPATH" "SS_WSPATH" "DISPLAY_NAME" "ARGO_AUTH" "AGENT")
+VAR_NAMES=("UUID" "VMESS_WSPATH" "VLESS_WSPATH" "TROJAN_WSPATH" "SS_WSPATH" "DISPLAY_NAME" "ARGO_AUTH" "AGENT" "UUID2" "S_ADDR" "S_PORT")
 
 # Store the settings ------------------------------------------
 VAR_STORAGE="env_vars.sh"

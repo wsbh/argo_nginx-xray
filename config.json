@@ -11,32 +11,36 @@
 			"settings": {
 				"clients": [
 					{
+						"id": "UUID2",
+						"email": "socks@x.com"
+					},
+					{
 						"id": "#UUID#"
 					}
 				],
 				"decryption": "none",
-                		"fallbacks":[
-                    		{
-                        		"dest":80
-                    		},
-				{
-                        		"path":"#VMESS_WSPATH#",
-                        		"dest":10000
-                    		},
-                    		{
-                        		"path":"#VLESS_WSPATH#",
-                        		"dest":20000
-                    		},
-                    		{
-                        		"path":"#TROJAN_WSPATH#",
-                        		"dest":30000
-                    		},
-				{
-                        		"path":"#SS_WSPATH#",
-                        		"dest":40000
-                    		}
-                	]
-		},
+				"fallbacks": [
+					{
+						"dest": 80
+					},
+					{
+						"path": "#VMESS_WSPATH#",
+						"dest": 10000
+					},
+					{
+						"path": "#VLESS_WSPATH#",
+						"dest": 20000
+					},
+					{
+						"path": "#TROJAN_WSPATH#",
+						"dest": 30000
+					},
+					{
+						"path": "#SS_WSPATH#",
+						"dest": 40000
+					}
+				]
+			},
 			"streamSettings": {
 				"network": "tcp"
 			}
@@ -47,6 +51,11 @@
 			"protocol": "vmess",
 			"settings": {
 				"clients": [
+					{
+						"id": "UUID2",
+						"email": "socks@x.com",
+						"alterId": 0
+					},
 					{
 						"id": "#UUID#",
 						"alterId": 0
@@ -66,6 +75,11 @@
 			"protocol": "vless",
 			"settings": {
 				"clients": [
+					{
+						"id": "UUID2",
+						"email": "socks@x.com",
+						"level": 0
+					},
 					{
 						"id": "#UUID#",
 						"level": 0
@@ -87,6 +101,11 @@
 			"protocol": "vless",
 			"settings": {
 				"clients": [
+					{
+						"id": "UUID2",
+						"email": "socks@x.com",
+						"level": 0
+					},
 					{
 						"id": "#UUID#",
 						"level": 0
@@ -132,6 +151,26 @@
 			"protocol": "freedom",
 			"settings": {
 			}
+		},
+		{
+			"protocol": "socks",
+			"settings": {
+				"servers": [
+					{
+						"address": "#S_ADDR#",
+						"port": "#S_PORT#"
+					}
+				]
+			},
+			"tag": "socks5-out"
 		}
-	]
+	],
+	"routing": {
+		"domainStrategy": "AsIs",
+		"rules": {
+			"type": "field",
+			"user": "socks@x.com",
+			"outboundTag": "socks5-out"
+		}
+	}
 }
