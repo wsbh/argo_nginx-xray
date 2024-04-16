@@ -162,7 +162,7 @@
 				"servers": [
 					{
 						"address": "#S_ADDR#",
-						"port": "#S_PORT#"
+						"port": #S_PORT#
 					}
 				]
 			},
