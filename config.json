@@ -11,11 +11,12 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "UUID2",
+						"id": "#UUID2#",
 						"email": "socks@x.com"
 					},
 					{
-						"id": "#UUID#"
+						"id": "#UUID#",
+						"email": "nosocks@x.com"
 					}
 				],
 				"decryption": "none",
@@ -52,12 +53,13 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "UUID2",
+						"id": "#UUID2#",
 						"email": "socks@x.com",
 						"alterId": 0
 					},
 					{
 						"id": "#UUID#",
+						"email": "nosocks@x.com",
 						"alterId": 0
 					}
 				]
@@ -76,12 +78,13 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "UUID2",
+						"id": "#UUID2#",
 						"email": "socks@x.com",
 						"level": 0
 					},
 					{
 						"id": "#UUID#",
+						"email": "nosocks@x.com",
 						"level": 0
 					}
 				],
@@ -102,12 +105,13 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "UUID2",
+						"id": "#UUID2#",
 						"email": "socks@x.com",
 						"level": 0
 					},
 					{
 						"id": "#UUID#",
+						"email": "nosocks@x.com",
 						"level": 0
 					}
 				],
@@ -150,7 +154,8 @@
 		{
 			"protocol": "freedom",
 			"settings": {
-			}
+			},
+			"tag": "nosocks5-out"
 		},
 		{
 			"protocol": "socks",
@@ -167,10 +172,16 @@
 	],
 	"routing": {
 		"domainStrategy": "AsIs",
-		"rules": {
+		"rules":[
+		{
 			"type": "field",
-			"user": "socks@x.com",
+			"user": ["socks@x.com"],
 			"outboundTag": "socks5-out"
-		}
+		},
+		{
+			"type": "field",
+			"user": ["nosocks@x.com"],
+			"outboundTag": "nosocks5-out"
+		}]
 	}
 }
