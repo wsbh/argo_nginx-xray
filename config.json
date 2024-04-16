@@ -11,12 +11,7 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "#UUID2#",
-						"email": "socks@x.com"
-					},
-					{
-						"id": "#UUID#",
-						"email": "nosocks@x.com"
+						"id": "#UUID#"
 					}
 				],
 				"decryption": "none",
@@ -27,6 +22,10 @@
 					{
 						"path": "#VMESS_WSPATH#",
 						"dest": 10000
+					},
+										{
+						"path": "#VMESS_WSPATH_SOCKS#",
+						"dest": 10001
 					},
 					{
 						"path": "#VLESS_WSPATH#",
@@ -53,13 +52,7 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "#UUID2#",
-						"email": "socks@x.com",
-						"alterId": 0
-					},
-					{
 						"id": "#UUID#",
-						"email": "nosocks@x.com",
 						"alterId": 0
 					}
 				]
@@ -71,6 +64,26 @@
 				}
 			}
 		},
+				{
+			"tag": "socksin",
+			"port": 10001,
+			"listen": "127.0.0.1",
+			"protocol": "vmess",
+			"settings": {
+				"clients": [
+					{
+						"id": "#UUID#",
+						"alterId": 0
+					}
+				]
+			},
+			"streamSettings": {
+				"network": "ws",
+				"wsSettings": {
+					"path": "#VMESS_WSPATH_SOCKS#"
+				}
+			}
+		},
 		{
 			"port": 20000,
 			"listen": "127.0.0.1",
@@ -78,13 +91,7 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "#UUID2#",
-						"email": "socks@x.com",
-						"level": 0
-					},
-					{
 						"id": "#UUID#",
-						"email": "nosocks@x.com",
 						"level": 0
 					}
 				],
@@ -105,13 +112,7 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "#UUID2#",
-						"email": "socks@x.com",
-						"level": 0
-					},
-					{
 						"id": "#UUID#",
-						"email": "nosocks@x.com",
 						"level": 0
 					}
 				],
@@ -153,9 +154,7 @@
 	"outbounds": [
 		{
 			"protocol": "freedom",
-			"settings": {
-			},
-			"tag": "nosocks5-out"
+			"settings": {}
 		},
 		{
 			"protocol": "socks",
@@ -175,13 +174,8 @@
 		"rules":[
 		{
 			"type": "field",
-			"user": ["socks@x.com"],
+			"inboundTag": ["socksin"],
 			"outboundTag": "socks5-out"
-		},
-		{
-			"type": "field",
-			"user": ["nosocks@x.com"],
-			"outboundTag": "nosocks5-out"
 		}]
 	}
 }
